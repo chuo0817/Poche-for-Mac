@@ -4,7 +4,7 @@
   "private": true,
   "main": "main.js",
   "homepage": ".",
-  "DEV": true,
+  "DEV": false,
   "dependencies": {
     "electron": "^2.0.0",
     "react": "^16.3.2",
