@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
+  "license": "Mozilla",
   "homepage": ".",
   "DEV": true,
   "dependencies": {
@@ -19,5 +20,9 @@
     "eject": "react-scripts eject",
     "electron-start": "electron ."
   },
-  "proxy": "https://poche.fm/api/app"
+  "proxy": "https://poche.fm/api/app",
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1"
+  }
 }
