@@ -1,0 +1,12 @@
+.App {
+  text-align: center; }
+
+.App-header {
+  background-color: #222;
+  padding: 20px;
+  color: white; }
+
+.App-header ul {
+  list-style: none; }
+  .App-header ul li {
+    font-size: 24px; }
