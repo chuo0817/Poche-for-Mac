@@ -20,6 +20,12 @@ class detail extends React.Component {
         this.setState({ items })
       })
   }
+  showDetail(){
+    console.log('1')
+      // this.state.items.map(i => {
+      //   console.log(i)
+      // })
+  }
   render() {
     return (
       <div className="App">
@@ -28,7 +34,7 @@ class detail extends React.Component {
           <div>
             {this.state.items.map(i => (
               <div className="item" style={{ backgroundImage: `url(${i.cover})` }}
-                key={i.id}> {i.title} </div>
+                key={i.id} onClick ={this.showDetail.bind(this,`${i.id}`)}> {i.title} </div>
             ))}
           </div>
         </header>
