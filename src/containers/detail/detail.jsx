@@ -30,7 +30,8 @@ class detail extends React.Component {
           <h1>破车推荐</h1>
           <div>
             {this.state.items.map(i => (
-              <div className="item" style={{ backgroundImage: `url(${i.cover})` }} key={i.id} onClick={this.showDetail.bind(this, `${i.id}`}> {i.title} </div>
+              <div className="item" style={{ backgroundImage: `url(${i.cover})` }}
+                key={i.id} onClick ={this.showDetail.bind(this,`${i.id}`)}> {i.title} </div>
             ))}
           </div>
         </header>
