@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './App.css'
 import axios from 'axios'
 import detail from '../detail/detail.jsx'
+import { Link } from 'react-router-dom'
+import { Router, Route } from 'react-router'
 
 class App extends React.Component {
   constructor(props) {
@@ -33,15 +35,17 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <h1>破车推荐</h1>
-          <div>
-            {this.state.items.map(i => (
-              <div className="item" style={{backgroundImage: `url(${i.cover})`}} key={i.id} onClick={() => this.showDetail(`${i.id}`)}>
-                  <div className="inner">
-                    <span className="itemText">{i.title}</span>
-                  </div>
-              </div>
-            ))}
-          </div>
+            <div>
+              {this.state.items.map(i => (
+                <div className="item" style={{backgroundImage: `url(${i.cover})`}} key={i.id} onClick={() => this.showDetail(`${i.id}`)}>
+                    <Link to="/detail">
+                      <div className="inner">
+                        <span className="itemText">{i.title}</span>
+                      </div>
+                    </Link>
+                </div>
+              ))}
+            </div>
         </header>
       </div>
     )
