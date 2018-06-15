@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
 import axios from 'axios'
-import { Router, Route } from 'react-router'
-import { Link } from 'react-router-dom'
 import detail from '../detail/detail.jsx'
 
 class App extends React.Component {
@@ -26,6 +24,10 @@ class App extends React.Component {
       })
   }
 
+  showDetail(id) {
+    console.log(id)
+  }
+
   render() {
     return (
       <div className="App">
@@ -33,13 +35,10 @@ class App extends React.Component {
           <h1>破车推荐</h1>
           <div>
             {this.state.items.map(i => (
-              <div className="item" style={{backgroundImage: `url(${i.cover})`}}
-                key={i.id}>
-                <Link to="/detail">
+              <div className="item" style={{backgroundImage: `url(${i.cover})`}} key={i.id} onClick={() => this.showDetail(`${i.id}`)}>
                   <div className="inner">
                     <span className="itemText">{i.title}</span>
                   </div>
-                </Link>
               </div>
             ))}
           </div>
@@ -48,13 +47,5 @@ class App extends React.Component {
     )
   }
 }
-
-React.render((
-  <Router>
-    <Route path="/" component={App}>
-      <Route path="detail" component={detail} />
-    </Route>
-  </Router>
-), document.body)
 
 export default App
