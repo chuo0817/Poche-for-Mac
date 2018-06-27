@@ -38,11 +38,11 @@ class App extends React.Component {
             <div>
               {this.state.items.map(i => (
                 <div className="item" style={{backgroundImage: `url(${i.cover})`}} key={i.id} onClick={() => this.showDetail(`${i.id}`)}>
-                    {/* <Link to="/detail"> */}
+                    <Link to="/detail">
                       <div className="inner">
                         <span className="itemText">{i.title}</span>
                       </div>
-                    {/* </Link> */}
+                    </Link>
                 </div>
               ))}
             </div>
