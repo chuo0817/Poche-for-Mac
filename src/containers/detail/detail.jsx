@@ -25,13 +25,8 @@ class Detail extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>破车推荐</h1>
-          <div>
-            {this.state.items.map(i => (
-              <div className="item" style={{ backgroundImage: `url(${i.cover})` }}
-                key={i.id} > {i.title} </div>
-            ))}
-          </div>
+          <h1>破车推荐detail</h1>
+          
         </header>
       </div>
     )
