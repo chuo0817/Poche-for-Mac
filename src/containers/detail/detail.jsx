@@ -1,5 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios'
+import AudioPlayer from 'react-responsive-audio-player'
+
+
+const playlist = []
+
 class Detail extends React.Component {
   constructor(props) {
     super(props)
@@ -7,6 +12,7 @@ class Detail extends React.Component {
       items: [],
     }
   }
+  // this.props.params.query
   componentDidMount() {
     axios
       .get('/playlists/', {
@@ -21,13 +27,14 @@ class Detail extends React.Component {
       })
   }
 
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1>破车推荐detail</h1>
-          
         </header>
+        <AudioPlayer playlist={playlist} />,
       </div>
     )
   }

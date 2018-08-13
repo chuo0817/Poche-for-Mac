@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 import axios from 'axios'
-import detail from '../detail/detail.jsx'
 import { Link } from 'react-router-dom'
-import { Router, Route } from 'react-router'
+// import { Route } from 'react-router'
 
 class App extends React.Component {
   constructor(props) {
@@ -26,10 +25,6 @@ class App extends React.Component {
       })
   }
 
-  showDetail(id) {
-    console.log(id)
-  }
-
   render() {
     return (
       <div className="App">
@@ -46,7 +41,7 @@ class App extends React.Component {
   renderAlbumCell(i) {
     return (
       <div className="item" style={{backgroundImage: `url(${i.cover})`}} key={i.id}>
-        <Link to="/detail">
+        <Link to={{pathname: `/detail/${i.id}`}}>
           <div className="inner">
             <span className="itemText">{i.title}</span>
           </div>
