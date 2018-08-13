@@ -14,8 +14,9 @@ class Detail extends React.Component {
   }
   // this.props.params.query
   componentDidMount() {
+    console.log(this.props)
     axios
-      .get('/playlists/', {
+      .get(`/playlists`, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
