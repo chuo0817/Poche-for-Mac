@@ -12,7 +12,7 @@ ReactDOM.render((
 		<div>
 	        <Route exact path="/" component={App} />
 	        <Route path="/detail" component={Detail} />
-    	</div>
+    </div>
 	</HashRouter>
 ), document.getElementById('root'));
 registerServiceWorker();
