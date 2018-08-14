@@ -5,7 +5,6 @@ import ReactPlayer from 'react-player'
 import './detail.css'
 
 let playlist = []
-let playing = this.state
 
 class Detail extends React.Component {
   constructor(props) {
@@ -41,6 +40,17 @@ class Detail extends React.Component {
       })
   }
 
+  playPause = () => {
+    this.setState({ playing: !this.state.playing })
+  }
+  renderLoadButton  (url, label) {
+    return (
+      <button onClick={() => this.load(url)}>
+        {label}
+      </button>
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -52,26 +62,12 @@ class Detail extends React.Component {
     )
   }
 
-  renderLoadButton (url, label) {
-    return (
-      <button onClick={() => this.load(url)}>
-        {label}
-      </button>
-    )
-  }
-
   audioPlayer(i) {
-    console.log(i.url)
-    function playPause () {
-      this.setState({ playing: !this.state.playing })
-    }
-
     return (
       <div className='player-wrapper' key={i.id}>
         <img className="player-cover" src={i.cover} />
-        <ReactPlayer className='react-player' url={i.url} width='100%' height='100%' playing={playing} />
-        <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
-        <span>{this.renderLoadButton(playlist, 'Multiple')}</span>
+        <ReactPlayer className='react-player' url={i.url} width='100%' height='100%' playing={this.state.playing} />
+        <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
       </div>
     )
   }
