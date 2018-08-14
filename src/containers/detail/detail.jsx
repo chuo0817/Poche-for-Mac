@@ -4,14 +4,13 @@ import ReactPlayer from 'react-player'
 
 import './detail.css'
 
-let playlist = []
-
 class Detail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       items: [],
-      playing: true
+      playing: true,
+      index: 0,
     }
   }
   // this.props.params.query
@@ -34,14 +33,20 @@ class Detail extends React.Component {
             url: i.url
           }
         })
-        playlist = items
-        console.log(playlist)
+        console.log('d',items)
         this.setState({ items })
       })
   }
 
   playPause = () => {
     this.setState({ playing: !this.state.playing })
+  }
+  pre = () => {
+    this.setState({ index: --this.state.index })
+  }
+  next = () => {
+    this.setState({ index: ++this.state.index })
+    console.log(this.state.index)
   }
   renderLoadButton  (url, label) {
     return (
@@ -52,25 +57,22 @@ class Detail extends React.Component {
   }
 
   render() {
+    console.log('dasdf',Object(this.state.items[0]).id)
     return (
       <div className="App">
       <span>detail</span>
-        {playlist.map(i => (
-              this.audioPlayer(i)
-            ))}
-      </div>
-    )
-  }
-
-  audioPlayer(i) {
-    return (
-      <div className='player-wrapper' key={i.id}>
-        <img className="player-cover" src={i.cover} />
-        <ReactPlayer className='react-player' url={i.url} width='100%' height='100%' playing={this.state.playing} />
+      <div className='player-wrapper' key={Object(this.state.items[this.state.index]).id}>
+        <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
+        <ReactPlayer className='react-player' url={Object(this.state.items[this.state.index]).url} width='100%' height='100%' playing={this.state.playing} />
+        <button onClick={this.pre}> 上一首 </button>
         <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
+        <button onClick={this.next}>
+          下一首
+        </button>
+      </div>
       </div>
     )
-  }
+  }Ï
 
 }
 
