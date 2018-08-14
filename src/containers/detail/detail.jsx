@@ -33,7 +33,6 @@ class Detail extends React.Component {
             url: i.url
           }
         })
-        console.log('d',items)
         this.setState({ items })
       })
   }
@@ -57,7 +56,6 @@ class Detail extends React.Component {
   }
 
   render() {
-    console.log('dasdf',Object(this.state.items[0]).id)
     return (
       <div className="App">
       <span>detail</span>
