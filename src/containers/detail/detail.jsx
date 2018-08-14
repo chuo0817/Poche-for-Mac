@@ -1,15 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-import AudioPlayer from 'react-responsive-audio-player'
+import ReactPlayer from 'react-player'
 
+import './detail.css'
 
 let playlist = []
-const controls = ['playpause', 'forwardskip', 'progressdisplay']
+let playing = this.state
+
 class Detail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       items: [],
+      playing: true
     }
   }
   // this.props.params.query
@@ -39,17 +42,40 @@ class Detail extends React.Component {
   }
 
   render() {
-  console.log('asdf',playlist)
-
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>detail</h1>
-        </header>
-        <AudioPlayer playlist={playlist} controls={controls}  autoplay={true}  />,
+      <span>detail</span>
+        {playlist.map(i => (
+              this.audioPlayer(i)
+            ))}
       </div>
     )
   }
+
+  renderLoadButton (url, label) {
+    return (
+      <button onClick={() => this.load(url)}>
+        {label}
+      </button>
+    )
+  }
+
+  audioPlayer(i) {
+    console.log(i.url)
+    function playPause () {
+      this.setState({ playing: !this.state.playing })
+    }
+
+    return (
+      <div className='player-wrapper' key={i.id}>
+        <img className="player-cover" src={i.cover} />
+        <ReactPlayer className='react-player' url={i.url} width='100%' height='100%' playing={playing} />
+        <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
+        <span>{this.renderLoadButton(playlist, 'Multiple')}</span>
+      </div>
+    )
+  }
+
 }
 
 export default Detail
