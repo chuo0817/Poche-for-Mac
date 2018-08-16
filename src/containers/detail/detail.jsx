@@ -11,6 +11,9 @@ class Detail extends React.Component {
       items: [],
       playing: true,
       index: 0,
+      loop: false,
+      played: 0,
+      volume: 0.5,
     }
   }
   // this.props.params.query
@@ -30,7 +33,7 @@ class Detail extends React.Component {
             cover: i.cover,
             artist: i.artist,
             title: i.name,
-            url: i.url
+            url: i.url,
           }
         })
         this.setState({ items })
@@ -47,31 +50,74 @@ class Detail extends React.Component {
     this.setState({ index: ++this.state.index })
     console.log(this.state.index)
   }
-  renderLoadButton  (url, label) {
-    return (
-      <button onClick={() => this.load(url)}>
-        {label}
-      </button>
-    )
+  onEnded = () => {
+    console.log('onEnded')
+    this.setState({ playing: this.state.loop })
+  }
+  onSeekMouseDown = e => {
+    this.setState({ seeking: true })
+  }
+  ref = player => {
+    this.player = player
+  }
+
+  onSeekChange = e => {
+    this.setState({ played: parseFloat(e.target.value) })
+  }
+  onSeekMouseUp = e => {
+    this.setState({ seeking: false })
+    this.player.seekTo(parseFloat(e.target.value))
+  }
+  onProgress = state => {
+    console.log('onProgress', state)
+    // We only want to update time slider if we are not currently seeking
+    if (!this.state.seeking) {
+      this.setState(state)
+    }
+  }
+
+  setVolume = e => {
+    this.setState({ volume: parseFloat(e.target.value) })
+  }
+
+  renderLoadButton(url, label) {
+    return <button onClick={() => this.load(url)}>{label}</button>
   }
 
   render() {
     return (
       <div className="App">
-      <span>detail</span>
-      <div className='player-wrapper' key={Object(this.state.items[this.state.index]).id}>
-        <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
-        <ReactPlayer className='react-player' url={Object(this.state.items[this.state.index]).url} width='100%' height='100%' playing={this.state.playing} />
-        <button onClick={this.pre}> 上一首 </button>
-        <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
-        <button onClick={this.next}>
-          下一首
-        </button>
-      </div>
+        <span>detail</span>
+        <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
+          <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
+          <ReactPlayer
+            className="react-player"
+            ref={this.ref}
+            url={Object(this.state.items[this.state.index]).url}
+            width="100%"
+            height="100%"
+            playing={this.state.playing}
+            volume={this.state.volume}
+          />
+          <button onClick={this.pre}> 上一首 </button>
+          <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
+          <button onClick={this.next}>下一首</button>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step="any"
+            value={this.state.played}
+            onMouseDown={this.onSeekMouseDown}
+            onChange={this.onSeekChange}
+            onMouseUp={this.onSeekMouseUp}
+          />
+          <input type='range' min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
+        </div>
       </div>
     )
-  }Ï
-
+  }
+  Ï
 }
 
 export default Detail
