@@ -87,9 +87,15 @@ class Detail extends React.Component {
   render() {
     return (
       <div className="App">
-        <span>detail</span>
         <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
-          <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
+          <div className="actions">
+            <img src="images/repeat-icon.png" alt="" />
+            <img src="images/like-icon.png" alt="" />
+            <img src="images/list-icon.png" alt="" />
+          </div>
+          <div className="img-container">
+            <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
+          </div>
           <ReactPlayer
             className="react-player"
             ref={this.ref}
@@ -99,20 +105,27 @@ class Detail extends React.Component {
             playing={this.state.playing}
             volume={this.state.volume}
           />
-          <button onClick={this.pre}> 上一首 </button>
-          <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
-          <button onClick={this.next}>下一首</button>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step="any"
-            value={this.state.played}
-            onMouseDown={this.onSeekMouseDown}
-            onChange={this.onSeekChange}
-            onMouseUp={this.onSeekMouseUp}
-          />
-          <input type='range' min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
+          <div className="music-detail">
+            <div>{Object(this.state.items[this.state.index]).title}</div>
+            <div>
+              'author':
+              {Object(this.state.items[this.state.index]).artist}
+            </div>
+            <button onClick={this.pre}> 上一首 </button>
+            <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
+            <button onClick={this.next}>下一首</button>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step="any"
+              value={this.state.played}
+              onMouseDown={this.onSeekMouseDown}
+              onChange={this.onSeekChange}
+              onMouseUp={this.onSeekMouseUp}
+            />
+            {/* <input type="range" min={0} max={1} step="any" value={this.state.volume} onChange={this.setVolume} /> */}
+          </div>
         </div>
       </div>
     )
