@@ -89,9 +89,9 @@ class Detail extends React.Component {
       <div className="App">
         <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
           <div className="actions">
-            <img src="images/repeat-icon.png" alt="" />
-            <img src="images/like-icon.png" alt="" />
-            <img src="images/list-icon.png" alt="" />
+            <img className="action-icon" src="images/repeat-icon.png" alt="" />
+            <img className="action-icon action-icon-second" src="images/like-icon.png" alt="" />
+            <img className="action-icon" src="images/list-icon.png" alt="" />
           </div>
           <div className="img-container">
             <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
@@ -106,15 +106,9 @@ class Detail extends React.Component {
             volume={this.state.volume}
           />
           <div className="music-detail">
-            <div>{Object(this.state.items[this.state.index]).title}</div>
-            <div>
-              'author':
-              {Object(this.state.items[this.state.index]).artist}
-            </div>
-            <button onClick={this.pre}> 上一首 </button>
-            <button onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</button>
-            <button onClick={this.next}>下一首</button>
-            <input
+            <div className="title">{Object(this.state.items[this.state.index]).title}</div>
+            <div className="author">{Object(this.state.items[this.state.index]).artist}</div>
+            <input className="process"
               type="range"
               min={0}
               max={1}
@@ -124,6 +118,12 @@ class Detail extends React.Component {
               onChange={this.onSeekChange}
               onMouseUp={this.onSeekMouseUp}
             />
+            <div className="playing-btn-container">
+              <div className="playing-wrap" onClick={this.pre}><img src="images/former-icon.png" alt=""/> </div>
+              <div className="playing-wrap playing-wrap-second" onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</div>
+              <div className="playing-wrap" onClick={this.next}><img src="images/next-icon.png" alt=""/> </div>
+            </div>
+
             {/* <input type="range" min={0} max={1} step="any" value={this.state.volume} onChange={this.setVolume} /> */}
           </div>
         </div>
