@@ -61,6 +61,7 @@ body {
 
 .playlist-card {
   text-align: center;
+  padding: 0 6px;
   .playlist-item {
     height: 60px;
     line-height: 60px;
@@ -83,6 +84,10 @@ body {
     .artist {
       width: 50%;
     }
+  }
+  .active {
+    background: #E099EC;
+    border-radius: 10px;
   }
 }
 

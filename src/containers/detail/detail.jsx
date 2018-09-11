@@ -3,7 +3,6 @@ import axios from 'axios'
 import ReactPlayer from 'react-player'
 
 import './detail.css'
-import { join } from 'path';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -90,9 +89,9 @@ class Detail extends React.Component {
       <div className="App">
         <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
           <div className="actions">
-            <img className="action-icon" src="images/repeat-icon.png" alt="" />
-            <img className="action-icon action-icon-second" src="images/like-icon.png" alt="" />
-            <img className="action-icon" src="images/list-icon.png" alt="" />
+            <img className="action-icon" src="images/repeat-icon.png" alt="-" />
+            <img className="action-icon action-icon-second" src="images/like-icon.png" alt="-" />
+            <img className="action-icon" src="images/list-icon.png" alt="-" />
           </div>
           <div className="img-container">
             <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
@@ -122,13 +121,13 @@ class Detail extends React.Component {
             />
             <div className="playing-btn-container">
               <div className="playing-wrap" onClick={this.pre}>
-                <img src="images/former-icon.png" alt="" />{' '}
+                <img src="images/former-icon.png" alt="-" />{' '}
               </div>
               <div className="playing-wrap playing-wrap-second" onClick={this.playPause}>
                 {this.state.playing ? 'Pause' : 'Play'}
               </div>
               <div className="playing-wrap" onClick={this.next}>
-                <img src="images/next-icon.png" alt="" />{' '}
+                <img src="images/next-icon.png" alt="-" />{' '}
               </div>
             </div>
 
@@ -143,8 +142,8 @@ class Detail extends React.Component {
           </div>
           {this.state.items.map((i,index) => (
             // console.log(i)
-            <div className={ `playlist-item ${index} === ${this.state.index} ? 'active' :''`} key={i.id}>
-              <span className="cover"><img className="cover-icon" src={i.cover} alt=""/></span>
+            <div className={ `playlist-item ${index === this.state.index ? 'active' :''}`} key={i.id}>
+              <span className="cover"><img className="cover-icon" src={i.cover} alt="-"/></span>
               <span className="title">{i.title}</span>
               <span className="artist">{i.artist}</span>
             </div>
