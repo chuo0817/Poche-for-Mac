@@ -84,6 +84,11 @@ class Detail extends React.Component {
     return <button onClick={() => this.load(url)}>{label}</button>
   }
 
+  handleClickPlay(param,index) {
+    console.log(param)
+    return this.state.index = param
+  }
+
   render() {
     return (
       <div className="App">
@@ -142,7 +147,7 @@ class Detail extends React.Component {
           </div>
           {this.state.items.map((i,index) => (
             // console.log(i)
-            <div className={ `playlist-item ${index === this.state.index ? 'active' :''}`} key={i.id}>
+            <div className={ `playlist-item ${index === this.state.index ? 'active' :''}`} key={i.id} onDoubleClick={ this.handleClickPlay.bind(this,index) }>
               <span className="cover"><img className="cover-icon" src={i.cover} alt="-"/></span>
               <span className="title">{i.title}</span>
               <span className="artist">{i.artist}</span>
