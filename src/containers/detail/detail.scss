@@ -59,3 +59,30 @@ body {
   }
 }
 
+.playlist-card {
+  text-align: center;
+  .playlist-item {
+    height: 60px;
+    line-height: 60px;
+    padding: 4px 10px;
+    display: flex;
+    font-size: 14px;
+    justify-content: flex-end;
+    .cover {
+      height: 100%;
+      .cover-icon {
+        display: block;
+        height: 54px;
+        width: 54px;
+        border-radius: 10px;
+      }
+    }
+    .title {
+      width: 40%;
+    }
+    .artist {
+      width: 50%;
+    }
+  }
+}
+

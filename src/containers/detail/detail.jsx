@@ -3,6 +3,7 @@ import axios from 'axios'
 import ReactPlayer from 'react-player'
 
 import './detail.css'
+import { join } from 'path';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -108,7 +109,8 @@ class Detail extends React.Component {
           <div className="music-detail">
             <div className="title">{Object(this.state.items[this.state.index]).title}</div>
             <div className="author">{Object(this.state.items[this.state.index]).artist}</div>
-            <input className="process"
+            <input
+              className="process"
               type="range"
               min={0}
               max={1}
@@ -119,13 +121,34 @@ class Detail extends React.Component {
               onMouseUp={this.onSeekMouseUp}
             />
             <div className="playing-btn-container">
-              <div className="playing-wrap" onClick={this.pre}><img src="images/former-icon.png" alt=""/> </div>
-              <div className="playing-wrap playing-wrap-second" onClick={this.playPause}>{this.state.playing ? 'Pause' : 'Play'}</div>
-              <div className="playing-wrap" onClick={this.next}><img src="images/next-icon.png" alt=""/> </div>
+              <div className="playing-wrap" onClick={this.pre}>
+                <img src="images/former-icon.png" alt="" />{' '}
+              </div>
+              <div className="playing-wrap playing-wrap-second" onClick={this.playPause}>
+                {this.state.playing ? 'Pause' : 'Play'}
+              </div>
+              <div className="playing-wrap" onClick={this.next}>
+                <img src="images/next-icon.png" alt="" />{' '}
+              </div>
             </div>
 
             {/* <input type="range" min={0} max={1} step="any" value={this.state.volume} onChange={this.setVolume} /> */}
           </div>
+        </div>
+        <div className="playlist-card">
+          <div className="playlist-item">
+            <span className="cover"></span>
+            <span className="title">Titile</span>
+            <span className="artist">Artist</span>
+          </div>
+          {this.state.items.map((i,index) => (
+            // console.log(i)
+            <div className={ `playlist-item ${index} === ${this.state.index} ? 'active' :''`} key={i.id}>
+              <span className="cover"><img className="cover-icon" src={i.cover} alt=""/></span>
+              <span className="title">{i.title}</span>
+              <span className="artist">{i.artist}</span>
+            </div>
+          ))}
         </div>
       </div>
     )
