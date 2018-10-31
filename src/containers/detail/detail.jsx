@@ -52,7 +52,8 @@ class Detail extends React.Component {
   }
   onEnded = () => {
     console.log('onEnded')
-    this.setState({ playing: this.state.loop })
+    // this.setState({ playing: this.state.loop })
+    this.setState({ index: ++this.state.index })
   }
   onSeekMouseDown = e => {
     this.setState({ seeking: true })
@@ -86,7 +87,8 @@ class Detail extends React.Component {
 
   handleClickPlay(param,index) {
     console.log(param)
-    return this.state.index = param
+    console.log('2',index)
+    this.setState({ index: param })
   }
 
   render() {
@@ -108,6 +110,7 @@ class Detail extends React.Component {
             width="100%"
             height="100%"
             playing={this.state.playing}
+            onEnded={this.onEnded}
             volume={this.state.volume}
           />
           <div className="music-detail">
