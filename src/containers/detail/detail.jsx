@@ -142,8 +142,8 @@ class Detail extends React.Component {
         <div className="playlist-card">
           <div className="playlist-item">
             <span className="cover"></span>
-            <span className="title">Titile</span>
-            <span className="artist">Artist</span>
+            <span className="title title-header">Titile</span>
+            <span className="artist artist-header">Artist</span>
           </div>
           {this.state.items.map((i,index) => (
             // console.log(i)
