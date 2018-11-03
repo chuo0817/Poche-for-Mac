@@ -11,10 +11,10 @@ body {
     width: 10%;
     text-align: center;
     height: 180px;
-    margin-top: 20px;
+    // margin-top: 20px;
     .action-icon {
       display: block;
-      margin: 0 auto;
+      margin: 50px auto;
       width: 20px;
       height: 20px;
     }
@@ -49,16 +49,26 @@ body {
     }
     .process {
       width: 80%;
-      margin: 10px auto 40px auto;
+      margin: 10px auto 20px auto;
     }
     .playing-btn-container {
       width: 80%;
       margin: 0 auto;
       .playing-wrap {
         display: inline-block;
+        vertical-align: middle;
+      }
+      .playing-wrap img {
+        width: 20px;
+        height: 20px;
       }
       .playing-wrap-second {
-        margin: 0 20px;
+        display: inline-block;
+        margin: 0 36px;
+      }
+      .playing-wrap-second img {
+        width: 30px;
+        height: 30px;
       }
     }
   }

@@ -14,6 +14,7 @@ class Detail extends React.Component {
       loop: false,
       played: 0,
       volume: 0.5,
+      repeat: 0,
     }
   }
   // this.props.params.query
@@ -53,7 +54,11 @@ class Detail extends React.Component {
   onEnded = () => {
     console.log('onEnded')
     // this.setState({ playing: this.state.loop })
-    this.setState({ index: ++this.state.index })
+    if (this.state.repeat) {
+      this.setState({ index: this.state.index })
+    } else {
+      this.setState({ index: ++this.state.index })
+    }
   }
   onSeekMouseDown = e => {
     this.setState({ seeking: true })
@@ -85,10 +90,12 @@ class Detail extends React.Component {
     return <button onClick={() => this.load(url)}>{label}</button>
   }
 
-  handleClickPlay(param,index) {
-    console.log(param)
-    console.log('2',index)
+  handleClickPlay(param, index) {
     this.setState({ index: param })
+  }
+
+  repeatSong() {
+    this.setState({ repeat: !repeat })
   }
 
   render() {
@@ -96,8 +103,8 @@ class Detail extends React.Component {
       <div className="App">
         <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
           <div className="actions">
-            <img className="action-icon" src="images/repeat-icon.png" alt="-" />
-            <img className="action-icon action-icon-second" src="images/like-icon.png" alt="-" />
+            <img className="action-icon" src="images/repeat-icon.png" alt="-" onClick={this.repeatSong} />
+            {/* <img className="action-icon action-icon-second" src="images/like-icon.png" alt="-" /> */}
             <img className="action-icon" src="images/list-icon.png" alt="-" />
           </div>
           <div className="img-container">
@@ -129,13 +136,13 @@ class Detail extends React.Component {
             />
             <div className="playing-btn-container">
               <div className="playing-wrap" onClick={this.pre}>
-                <img src="images/former-icon.png" alt="-" />{' '}
+                <img src="images/former-icon.png" alt="-" />
               </div>
               <div className="playing-wrap playing-wrap-second" onClick={this.playPause}>
-                {this.state.playing ? 'Pause' : 'Play'}
+                <img src={this.state.playing ? 'images/pause-icon.png' : 'images/play-icon.png'} alt="-" />
               </div>
               <div className="playing-wrap" onClick={this.next}>
-                <img src="images/next-icon.png" alt="-" />{' '}
+                <img src="images/next-icon.png" alt="-" />
               </div>
             </div>
 
@@ -148,10 +155,10 @@ class Detail extends React.Component {
             <span className="title title-header">Titile</span>
             <span className="artist artist-header">Artist</span>
           </div>
-          {this.state.items.map((i,index) => (
+          {this.state.items.map((i, index) => (
             // console.log(i)
-            <div className={ `playlist-item ${index === this.state.index ? 'active' :''}`} key={i.id} onDoubleClick={ this.handleClickPlay.bind(this,index) }>
-              <span className="cover"><img className="cover-icon" src={i.cover} alt="-"/></span>
+            <div className={`playlist-item ${index === this.state.index ? 'active' : ''}`} key={i.id} onDoubleClick={this.handleClickPlay.bind(this, index)}>
+              <span className="cover"><img className="cover-icon" src={i.cover} alt="-" /></span>
               <span className="title">{i.title}</span>
               <span className="artist">{i.artist}</span>
             </div>

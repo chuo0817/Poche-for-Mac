@@ -18,7 +18,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   if (pkg.DEV) {
-    mainWindow.loadURL('http://localhost:7777/')
+    mainWindow.loadURL('http://localhost:3000/')
   } else {
     mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, './build/index.html'),
