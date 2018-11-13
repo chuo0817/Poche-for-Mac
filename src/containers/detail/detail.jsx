@@ -11,10 +11,9 @@ class Detail extends React.Component {
       items: [],
       playing: true,
       index: 0,
-      loop: false,
       played: 0,
       volume: 0.5,
-      repeat: 0,
+      repeat: false,
     }
   }
   // this.props.params.query
@@ -41,30 +40,24 @@ class Detail extends React.Component {
       })
   }
 
-  playPause = () => {
+  playOrPauseMusic = () => {
     this.setState({ playing: !this.state.playing })
   }
-  pre = () => {
+  playPreviousMusic = () => {
     this.setState({ index: --this.state.index })
   }
-  next = () => {
+  playNextMusic = () => {
     this.setState({ index: ++this.state.index })
     console.log(this.state.index)
   }
+
   onEnded = () => {
-    console.log('onEnded')
-    // this.setState({ playing: this.state.loop })
-    if (this.state.repeat) {
-      this.setState({ index: this.state.index })
-    } else {
-      this.setState({ index: ++this.state.index })
+    if (!this.state.repeat) {
+      this.playNextMusic()
     }
   }
   onSeekMouseDown = e => {
     this.setState({ seeking: true })
-  }
-  ref = player => {
-    this.player = player
   }
 
   onSeekChange = e => {
@@ -74,12 +67,16 @@ class Detail extends React.Component {
     this.setState({ seeking: false })
     this.player.seekTo(parseFloat(e.target.value))
   }
-  onProgress = state => {
-    console.log('onProgress', state)
+  onProgress = (percent) => {
+    console.log('onProgress', percent)
     // We only want to update time slider if we are not currently seeking
-    if (!this.state.seeking) {
-      this.setState(state)
-    }
+    // if (!this.state.seeking) {
+    //   this.setState(state)
+    // }
+  }
+
+  onDuration = d => {
+    console.log('onDuration', d);
   }
 
   setVolume = e => {
@@ -91,11 +88,12 @@ class Detail extends React.Component {
   }
 
   handleClickPlay(param, index) {
-    this.setState({ index: param })
+    console.log('click')
+    this.setState({ index: param, played: 0 })
   }
 
-  repeatSong() {
-    this.setState({ repeat: !repeat })
+  repeatSong = () => {
+    this.setState({ repeat: !this.state.repeat })
   }
 
   render() {
@@ -103,7 +101,7 @@ class Detail extends React.Component {
       <div className="App">
         <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
           <div className="actions">
-            <img className="action-icon" src="images/repeat-icon.png" alt="-" onClick={this.repeatSong} />
+            <img className="action-icon" src={this.state.repeat ? 'images/repeat-icon-active.png' : 'images/repeat-icon.png'} alt="-" onClick={this.repeatSong} />
             {/* <img className="action-icon action-icon-second" src="images/like-icon.png" alt="-" /> */}
             <img className="action-icon" src="images/list-icon.png" alt="-" />
           </div>
@@ -111,14 +109,17 @@ class Detail extends React.Component {
             <img className="player-cover" src={Object(this.state.items[this.state.index]).cover} />
           </div>
           <ReactPlayer
+            onProgress={this.onProgress}
+            onDuration={this.onDuration}
             className="react-player"
-            ref={this.ref}
+            ref={this.player}
             url={Object(this.state.items[this.state.index]).url}
             width="100%"
             height="100%"
             playing={this.state.playing}
             onEnded={this.onEnded}
             volume={this.state.volume}
+            loop={this.state.repeat}
           />
           <div className="music-detail">
             <div className="title">{Object(this.state.items[this.state.index]).title}</div>
@@ -138,7 +139,7 @@ class Detail extends React.Component {
               <div className="playing-wrap" onClick={this.pre}>
                 <img src="images/former-icon.png" alt="-" />
               </div>
-              <div className="playing-wrap playing-wrap-second" onClick={this.playPause}>
+              <div className="playing-wrap playing-wrap-second" onClick={this.playOrPauseMusic}>
                 <img src={this.state.playing ? 'images/pause-icon.png' : 'images/play-icon.png'} alt="-" />
               </div>
               <div className="playing-wrap" onClick={this.next}>
