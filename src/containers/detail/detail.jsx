@@ -14,11 +14,12 @@ class Detail extends React.Component {
       played: 0,
       volume: 0.5,
       repeat: false,
+      totalTime: 0,
+      activeTime: 0,
     }
   }
   // this.props.params.query
   componentDidMount() {
-    console.log()
     axios
       .get(`/playlists/${this.props.location.pathname.substring(8)}`, {
         headers: {
@@ -39,7 +40,9 @@ class Detail extends React.Component {
         this.setState({ items })
       })
   }
-
+  ref = player => {
+    this.player = player
+  }
   playOrPauseMusic = () => {
     this.setState({ playing: !this.state.playing })
   }
@@ -48,7 +51,6 @@ class Detail extends React.Component {
   }
   playNextMusic = () => {
     this.setState({ index: ++this.state.index })
-    console.log(this.state.index)
   }
 
   onEnded = () => {
@@ -67,16 +69,17 @@ class Detail extends React.Component {
     this.setState({ seeking: false })
     this.player.seekTo(parseFloat(e.target.value))
   }
-  onProgress = (percent) => {
-    console.log('onProgress', percent)
+  onProgress = e => {
     // We only want to update time slider if we are not currently seeking
-    // if (!this.state.seeking) {
-    //   this.setState(state)
-    // }
+    if (!this.state.seeking) {
+      this.setState(e)
+    }
+    this.setState({ activeTime: (e.playedSeconds / 60).toFixed(2) })
   }
 
   onDuration = d => {
-    console.log('onDuration', d);
+    console.log('duration', d)
+    this.setState({ totalTime: (d / 60).toFixed(2) })
   }
 
   setVolume = e => {
@@ -88,7 +91,6 @@ class Detail extends React.Component {
   }
 
   handleClickPlay(param, index) {
-    console.log('click')
     this.setState({ index: param, played: 0 })
   }
 
@@ -112,7 +114,7 @@ class Detail extends React.Component {
             onProgress={this.onProgress}
             onDuration={this.onDuration}
             className="react-player"
-            ref={this.player}
+            ref={this.ref}
             url={Object(this.state.items[this.state.index]).url}
             width="100%"
             height="100%"
@@ -135,14 +137,17 @@ class Detail extends React.Component {
               onChange={this.onSeekChange}
               onMouseUp={this.onSeekMouseUp}
             />
+            <div className="player-time">
+               {this.state.activeTime}/{this.state.totalTime}
+            </div>
             <div className="playing-btn-container">
-              <div className="playing-wrap" onClick={this.pre}>
+              <div className="playing-wrap" onClick={this.playPreviousMusic}>
                 <img src="images/former-icon.png" alt="-" />
               </div>
               <div className="playing-wrap playing-wrap-second" onClick={this.playOrPauseMusic}>
                 <img src={this.state.playing ? 'images/pause-icon.png' : 'images/play-icon.png'} alt="-" />
               </div>
-              <div className="playing-wrap" onClick={this.next}>
+              <div className="playing-wrap" onClick={this.playNextMusic}>
                 <img src="images/next-icon.png" alt="-" />
               </div>
             </div>
@@ -157,7 +162,6 @@ class Detail extends React.Component {
             <span className="artist artist-header">Artist</span>
           </div>
           {this.state.items.map((i, index) => (
-            // console.log(i)
             <div className={`playlist-item ${index === this.state.index ? 'active' : ''}`} key={i.id} onDoubleClick={this.handleClickPlay.bind(this, index)}>
               <span className="cover"><img className="cover-icon" src={i.cover} alt="-" /></span>
               <span className="title">{i.title}</span>
