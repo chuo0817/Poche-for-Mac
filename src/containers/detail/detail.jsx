@@ -53,18 +53,21 @@ class Detail extends React.Component {
     this.setState({ index: ++this.state.index })
   }
 
-  secondToDate = (result)=> {
+  secondToDate = (result) => {
     // var h = Math.floor(result / 3600) || 00;
-    let m = Math.floor((result / 60 % 60)) || '0';
-    if(m.length === 1) {
-      m = '0'+ m
+    if (result > 0) {
+
+      let m = Math.floor((result / 60 % 60));
+      if (m < 10) {
+        m = '0' + m
+      }
+      let s = Math.floor((result % 60));
+      if (s < 10) {
+        s = '0' + s
+      }
+      return result = + m + ':' + s
     }
-    let s = Math.floor((result % 60)) || '00';
-    if(s.length === 1) {
-      s = '0' + s
-    }
-    return result =+ m + ':' + s;
-}
+  }
   onEnded = () => {
     if (!this.state.repeat) {
       this.playNextMusic()
@@ -86,7 +89,7 @@ class Detail extends React.Component {
     if (!this.state.seeking) {
       this.setState(e)
     }
-    this.setState({ activeTime: this.secondToDate(e) })
+    this.setState({ activeTime: this.secondToDate(e.playedSeconds) })
   }
 
   onDuration = d => {
@@ -141,19 +144,20 @@ class Detail extends React.Component {
           <div className="music-detail">
             <div className="title">{Object(this.state.items[this.state.index]).title}</div>
             <div className="author">{Object(this.state.items[this.state.index]).artist}</div>
-            <input
-              className="process"
-              type="range"
-              min={0}
-              max={1}
-              step="any"
-              value={this.state.played}
-              onMouseDown={this.onSeekMouseDown}
-              onChange={this.onSeekChange}
-              onMouseUp={this.onSeekMouseUp}
-            />
-            <div className="player-time">
-               {this.state.activeTime}/{this.state.totalTime}
+            <div className="process">
+              <input className="process-line"
+                type="range"
+                min={0}
+                max={1}
+                step="any"
+                value={this.state.played}
+                onMouseDown={this.onSeekMouseDown}
+                onChange={this.onSeekChange}
+                onMouseUp={this.onSeekMouseUp}
+              />
+              <div className="player-time">
+                {this.state.activeTime}/{this.state.totalTime}
+              </div>
             </div>
             <div className="playing-btn-container">
               <div className="playing-wrap" onClick={this.playPreviousMusic}>
@@ -183,6 +187,9 @@ class Detail extends React.Component {
               <span className="artist">{i.artist}</span>
             </div>
           ))}
+        </div>
+        <div className="playlist-button">
+          2018年4月
         </div>
       </div>
     )
