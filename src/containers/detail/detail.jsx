@@ -53,6 +53,12 @@ class Detail extends React.Component {
     this.setState({ index: ++this.state.index })
   }
 
+  secondToDate = (result)=> {
+    // var h = Math.floor(result / 3600) || 00;
+    var m = Math.floor((result / 60 % 60)) || '00';
+    var s = Math.floor((result % 60)) || '00';
+    return result = m + ":" + s;
+}
   onEnded = () => {
     if (!this.state.repeat) {
       this.playNextMusic()
@@ -74,12 +80,12 @@ class Detail extends React.Component {
     if (!this.state.seeking) {
       this.setState(e)
     }
-    this.setState({ activeTime: (e.playedSeconds / 60).toFixed(2) })
+    this.setState({ activeTime: this.secondToDate(e) })
+    console.log(e,this.state.activeTime)
   }
 
   onDuration = d => {
-    console.log('duration', d)
-    this.setState({ totalTime: (d / 60).toFixed(2) })
+    this.setState({ totalTime: this.secondToDate(d) })
   }
 
   setVolume = e => {
