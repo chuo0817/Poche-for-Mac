@@ -55,9 +55,16 @@ class Detail extends React.Component {
 
   secondToDate = (result)=> {
     // var h = Math.floor(result / 3600) || 00;
-    var m = Math.floor((result / 60 % 60)) || '00';
-    var s = Math.floor((result % 60)) || '00';
-    return result = m + ":" + s;
+    let m = Math.floor((result / 60 % 60)) || '0';
+    if(m.length === 1) {
+      m = '0'+ m
+    }
+    let s = Math.floor((result % 60)) || '00';
+    console.log(s,s.length)
+    if(s.length === 1) {
+      s = '0' + s
+    }
+    return result =+ m + ':' + s;
 }
   onEnded = () => {
     if (!this.state.repeat) {
