@@ -6,12 +6,11 @@ body {
   height: 210px;
   position: relative;
   box-shadow: 0px 0px 5px rgba(54,54,54,0.3);
+  display: flex;
   .actions {
-    display: inline-block;
     width: 10%;
     text-align: center;
     height: 180px;
-    // margin-top: 20px;
     .action-icon {
       display: block;
       margin: 30px auto;
@@ -26,7 +25,6 @@ body {
   }
   .img-container {
     width: 30%;
-    display: inline-block;
     .player-cover {
       position: absolute;
       top: 0;
@@ -38,8 +36,8 @@ body {
     }
   }
   .music-detail {
-    display: inline-block;
     width: 60%;
+    margin: 40px auto auto 60px;
     .title {
       font-size: 20px;
       font-weight: bold;
@@ -52,106 +50,87 @@ body {
     // input process class
     .process {
       -webkit-appearance: none;
-      width: 80%;
       margin: 10px auto 20px auto;
+      display: flex;
+      justify-content: center;
+      .process-line {
+        width: 70%;
+      }
+      .process-line:focus {
+        outline: none;
+      }
+      .process-line::-webkit-slider-runnable-track{
+        background:linear-gradient(to right, #1ab1e2 0%, #1ab1e2 {this.state.activeTime * 100}%,#eee 80%, #eee); 
     }
-    .process:focus {
-      outline: none;
+      .process-line::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 3px;
+        cursor: pointer;
+        // animate: 0.2s;
+        background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
+        border-radius: 1.3px;
+        border: none;
+        outline: none;
+        // border: 0.2px solid #010101;
+      }
+      .process-line::-webkit-slider-thumb {
+        border: 1px solid #949494;
+        height: 16px;
+        width: 16px;
+        margin-top: -5px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        -webkit-appearance: none;
+        position: relative;
+      }
+      .process-line::-webkit-slider-thumb:after {
+        display: block;
+        content: '';
+        background: #E099EC;
+        width: 4px;
+        height: 4px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+      }
+      .process-line:focus::-webkit-slider-runnable-track {
+        background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
+      }
+      .process-line::-ms-track {
+        width: 100%;
+        // height: 8.4px;
+        cursor: pointer;
+        // animate: 0.2s;
+        background: transparent;
+        border-color: transparent;
+        border-width: 16px 0;
+        color: transparent;
+        background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
+      }
+      .process-line::-ms-fill-lower {
+        // background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
+        background: red;
+        border-radius: 2.6px;
+        // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      }
+      .process-line::-ms-fill-upper {
+        // background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
+        // border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      }
+      .process-line:focus::-ms-fill-lower {
+        // background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
+background: red;
+      }
+      .player-time {
+        color: #9c9c9c;
+        font-size: 12px;
+        margin-left: 10px;
+      }
     }
-    .process::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      // animate: 0.2s;
-      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      background: #E099EC;
-      border-radius: 1.3px;
-      border: 0.2px solid #010101;
-    }
-    .process::-webkit-slider-thumb {
-      border: 1px solid #000000;
-      height: 16px;
-      width: 16px;
-      border-radius: 50%;
-      background: #ffffff;
-      cursor: pointer;
-      -webkit-appearance: none;
-      position: relative;
-    }
-    .process::-webkit-slider-thumb:before {
-      display: block;
-      content: '';
-      background: #E099EC;
-      width: 4px;
-      height: 4px;
-      position: absolute;
-      top: 50%;
-      left: 0;
-    }
-    .process:focus::-webkit-slider-runnable-track {
-      background: #E099EC;
-    }
-    .process::-moz-range-track {
-      width: 100%;
-      height: 8.4px;
-      cursor: pointer;
-      animate: 0.2s;
-      // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      background: #E099EC;
-      border-radius: 1.3px;
-      // border: 0.2px solid #010101;
-    }
-    .process::-moz-range-thumb {
-      // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      border: 1px solid #000000;
-      height: 36px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-    }
-    .process::-ms-track {
-      width: 100%;
-      // height: 8.4px;
-      cursor: pointer;
-      animate: 0.2s;
-      background: transparent;
-      border-color: transparent;
-      border-width: 16px 0;
-      color: transparent;
-      background:#E099EC;
-    }
-    .process::-ms-fill-lower {
-      background: #E099EC;
-      border: 0.2px solid #010101;
-      border-radius: 2.6px;
-      // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    }
-    .process::-ms-fill-upper {
-      background: #E099EC;
-      // border: 0.2px solid #010101;
-      border-radius: 2.6px;
-      // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    }
-    .process::-ms-thumb {
-      // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      // border: 1px solid #000000;
-      // height: 36px;
-      // width: 16px;
-      // border-radius: 3px;
-      // background: #ffffff;
-      cursor: pointer;
-    }
-    .process:focus::-ms-fill-lower {
-      background: #E099EC;
-    }
-    .player-time {
-      color: #9c9c9c;
-      font-size: 12px;
-      text-align: right;
-      width: 80%;
-      margin: 0 auto;
-    }
+    
     .playing-btn-container {
       width: 80%;
       margin: 0 auto;
@@ -214,5 +193,14 @@ body {
     border-radius: 10px;
     color: #fff;
   }
+}
+.playlist-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #E099EC;
+  padding: 20px 40px;
+  border-radius: 40px;
+  color: #fff;
 }
 
