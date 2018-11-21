@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Player from '../player/Player.jsx'
 // import { Route } from 'react-router'
 
 class App extends React.Component {
@@ -28,12 +29,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>破车推荐</h1>
-            {this.state.items.map(i => (
-              this.renderAlbumCell(i)
-            ))}
-        </header>
+        <Player></Player>
+        <div className="List"></div>
       </div>
     )
   }

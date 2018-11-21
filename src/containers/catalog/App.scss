@@ -1,5 +1,13 @@
 .App {
-  text-align: center;
+  width: 1200px;
+  height: 600px;
+  display: flex;
+
+  .List {
+    width: 600px;
+    height: 100%;
+    background-color: blue;
+  }
 }
 
 .App-header {
