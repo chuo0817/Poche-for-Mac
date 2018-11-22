@@ -14,12 +14,14 @@ body {
     // margin-top: 20px;
     .action-icon {
       display: block;
-      margin: 50px auto;
+      margin: 30px auto;
       width: 20px;
       height: 20px;
     }
-    .action-icon-second {
-      margin: 40px auto;
+    .action-icon-return {
+      width: 26px;
+      margin: 30px auto 10px auto;
+      cursor: pointer;
     }
   }
   .img-container {
@@ -179,6 +181,8 @@ body {
 .playlist-card {
   text-align: center;
   padding: 0 6px;
+  height: 400px;
+  overflow: scroll;
   .playlist-item {
     height: 60px;
     line-height: 60px;

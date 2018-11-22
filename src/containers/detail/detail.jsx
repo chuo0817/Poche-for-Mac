@@ -60,7 +60,6 @@ class Detail extends React.Component {
       m = '0'+ m
     }
     let s = Math.floor((result % 60)) || '00';
-    console.log(s,s.length)
     if(s.length === 1) {
       s = '0' + s
     }
@@ -88,7 +87,6 @@ class Detail extends React.Component {
       this.setState(e)
     }
     this.setState({ activeTime: this.secondToDate(e) })
-    console.log(e,this.state.activeTime)
   }
 
   onDuration = d => {
@@ -111,13 +109,17 @@ class Detail extends React.Component {
     this.setState({ repeat: !this.state.repeat })
   }
 
+  goIndex = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <div className="App">
         <div className="player-wrapper" key={Object(this.state.items[this.state.index]).id}>
           <div className="actions">
+            <img className="action-icon action-icon-return" src="images/return-icon.png" alt="-" onClick={this.goIndex} />
             <img className="action-icon" src={this.state.repeat ? 'images/repeat-icon-active.png' : 'images/repeat-icon.png'} alt="-" onClick={this.repeatSong} />
-            {/* <img className="action-icon action-icon-second" src="images/like-icon.png" alt="-" /> */}
             <img className="action-icon" src="images/list-icon.png" alt="-" />
           </div>
           <div className="img-container">
