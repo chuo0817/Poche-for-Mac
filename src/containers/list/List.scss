@@ -1,0 +1,97 @@
+.ListContainer {
+  width: 600px;
+  height: 100%;
+  background-color: #282828;
+  display: flex;
+
+  .List {
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  .MusicList {
+    width: 350px;
+    height: 100%;
+    margin-left: 25px;
+
+    .Header {
+      height: 25px;
+      margin-top: 28px;
+
+      span {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+      }
+    }
+
+    .List {
+      height: 540px;
+    }
+
+    .Item {
+      height: 85px;
+      width: 100%;
+      .Content {
+        padding: 15px;
+        display: flex;
+      }
+
+      .Cover img {
+        border-radius: 10px;
+        width: 54px;
+        height: 54px;
+      }
+
+      .Info {
+        margin-left: 14px;
+        .Title {
+          padding-top: 4px;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .Artist {
+          padding-top: 2px;
+          color: rgba(216, 216, 216, 0.5);
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .AlbumList {
+    margin-right: 20px;
+    margin-top: 20px;
+    float: right;
+    width: 200px;
+    height: 560px;
+    overflow: scroll;
+
+    .Item {
+      margin-bottom: 18px;
+      width: 160px;
+      height: 160px;
+      overflow: hidden;
+      background-size: contain;
+      border-radius: 8px;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .Title {
+        align-content: center;
+        margin: auto;
+        width: 60%;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import './App.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Player from '../player/Player.jsx'
-// import { Route } from 'react-router'
+import List from '../list/List.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Player></Player>
-        <div className="List"></div>
+        <List></List>
       </div>
     )
   }

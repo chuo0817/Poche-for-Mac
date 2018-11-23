@@ -1,16 +1,48 @@
 .Player {
   width: 600px;
   height: 100%;
-  background-color: #BB3E34;
+  background-color: #282828;
 
   .Title {
     color: white;
     margin-left: 35px;
     margin-top: 30px;
+    font-size: 24px;
     font-weight: bold;
+    position: absolute;
   }
 
-  .Control {
-    background-color: aqua;
+  .Cover {
+    width: 340px;
+    height: 340px;
+    margin-left: 130px;
+    margin-top: 130px;
+    background-color: white;
+    border-radius: 5px;
+
+    .Control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      height: 90px;
+      padding-top: calc(340px - 90px);
+      .playing-wrap {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .playing-wrap img {
+        width: 20px;
+        height: 20px;
+      }
+      .playing-wrap-second {
+        display: inline-block;
+        margin: 0 36px;
+      }
+      .playing-wrap-second img {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 }
