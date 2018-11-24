@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './List.css'
-import axios from 'axios'
+import { fetchMusics, fetchMusicLists} from '../../util/request'
 
 class List extends React.Component {
 	constructor(props) {
@@ -13,39 +13,16 @@ class List extends React.Component {
 	}
 
   componentDidMount() {
-    axios
-      .get(`/playlists/79`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
+    fetchMusicLists(list => {
+      console.log(list)
+      this.setState({ albums: list })
+      const firstAlbumId = list[0].id;
+      fetchMusics(firstAlbumId, musics => {
+        this.setState({ musics: musics })
       })
-      .then(res => {
-        const items = res.data.map(i => {
-          return {
-            id: i.id,
-            cover: i.cover,
-            artist: i.artist,
-            title: i.name,
-            url: i.url,
-          }
-        })
-        console.log(items)
-        this.setState({ musics: items })
-      })
-    axios
-      .get('/playlists/', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(res => {
-        const items = res.data
-        this.setState({ albums: items })
-      })
+    })
 
-
+    
   }
 
 	render() {

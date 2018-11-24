@@ -13,9 +13,12 @@ class Player extends React.Component {
  render() {
   return (
    <div className="Player">
-    <div className="Title">
-    <span>破车推荐</span>
+    <div className="Header">
+      <div className="Title">
+        <span>破车推荐</span>
+      </div>
     </div>
+    
     <div className="Cover">
      <div className="Control">
       <div className="playing-wrap" onClick={this.playPreviousMusic}>
@@ -29,7 +32,12 @@ class Player extends React.Component {
       </div>
      </div>
     </div>
-   </div>
+
+    <div className="PlayerInfo">
+      <div className="Title">11111</div>
+      <div className="Artist">22222</div>
+    </div>
+    </div>
   )
  }
 }
