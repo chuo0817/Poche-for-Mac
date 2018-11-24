@@ -30,7 +30,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Player></Player>
-        <List></List>
+        <List onSelectedMusic={this.onPlayerMusic}></List>
       </div>
     )
   }
@@ -45,6 +45,10 @@ class App extends React.Component {
         </Link>
       </div>
     )
+  }
+
+  onPlayerMusic = (music) => {
+    console.log(music)
   }
 }
 

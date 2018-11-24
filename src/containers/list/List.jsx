@@ -14,12 +14,9 @@ class List extends React.Component {
 
   componentDidMount() {
     fetchMusicLists(list => {
-      console.log(list)
       this.setState({ albums: list })
       const firstAlbumId = list[0].id;
-      fetchMusics(firstAlbumId, musics => {
-        this.setState({ musics: musics })
-      })
+      this.fetchMusics(firstAlbumId)
     })
 
     
@@ -34,7 +31,8 @@ class List extends React.Component {
           </div>
           <div className="List">
           {this.state.musics.map((music, index) => (
-            <div className={`Item ${index === this.state.index ? 'active' : ''}`} key={music.id}>
+            <div className={`Item ${index === this.state.index ? 'active' : ''}`} 
+            key={music.id} onClick={this.handleSelectedMusic.bind(this, music)}>
               <div className="Content">
               <span className="Cover"><img src={music.cover}/></span>
               <div className="Info">
@@ -49,7 +47,9 @@ class List extends React.Component {
           <div className="AlbumList">
             <div className="List">
             {this.state.albums.map((album, index) => (
-              <div className={`Item ${index === this.state.index ? 'active' : ''}`}  style={{backgroundImage: `url(${album.cover})`}} key={album.id}>
+              <div className={`Item ${index === this.state.index ? 'active' : ''}`}  
+              style={{backgroundImage: `url(${album.cover})`}} key={album.id}  
+              onClick={this.handlePreviewAlbum.bind(this, album.id)}>
                 <span className="Title">{album.title}</span>
               </div>
             ))}
@@ -57,6 +57,20 @@ class List extends React.Component {
           </div>
 			</div>
 		)
-	}
+  }
+
+  fetchMusics(id) {
+    fetchMusics(id, musics => {
+      this.setState({ musics: musics })
+    })
+  }
+
+  handleSelectedMusic = music => {
+    this.props.onSelectedMusic(music)
+  }
+  
+  handlePreviewAlbum = (id) => {
+    this.fetchMusics(id)
+  }
 }
 export default List

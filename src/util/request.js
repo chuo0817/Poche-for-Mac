@@ -33,7 +33,6 @@ export function fetchMusics(id, cb) {
             url: i.url,
           }
         })
-        console.log(items)
         cb(items)
       })
 }

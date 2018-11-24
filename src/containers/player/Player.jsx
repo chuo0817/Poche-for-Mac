@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Player.css'
+import MusicPlayer from './music-player/MusicPlayer'
 
 class Player extends React.Component {
  constructor(props) {
@@ -13,6 +14,7 @@ class Player extends React.Component {
  render() {
   return (
    <div className="Player">
+   <MusicPlayer></MusicPlayer>
     <div className="Header">
       <div className="Title">
         <span>破车推荐</span>
