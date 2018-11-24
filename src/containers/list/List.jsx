@@ -16,10 +16,11 @@ class List extends React.Component {
     fetchMusicLists(list => {
       this.setState({ albums: list })
       const firstAlbumId = list[0].id;
-      this.fetchMusics(firstAlbumId)
+      fetchMusics(firstAlbumId, musics => {
+        this.setState({ musics: musics })
+        this.props.onSelectedMusic(musics[0])
+      })
     })
-
-    
   }
 
 	render() {
@@ -60,9 +61,7 @@ class List extends React.Component {
   }
 
   fetchMusics(id) {
-    fetchMusics(id, musics => {
-      this.setState({ musics: musics })
-    })
+    
   }
 
   handleSelectedMusic = music => {
@@ -70,7 +69,10 @@ class List extends React.Component {
   }
   
   handlePreviewAlbum = (id) => {
-    this.fetchMusics(id)
+    fetchMusics(id, musics => {
+      this.setState({ musics: musics })
+    })
+    
   }
 }
 export default List

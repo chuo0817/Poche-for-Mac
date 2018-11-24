@@ -9,7 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: [],
+      currentMusics: [],
+      playingMusic: {}
     }
   }
   componentDidMount() {
@@ -29,7 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Player></Player>
+        <Player music={this.state.playingMusic}></Player>
         <List onSelectedMusic={this.onPlayerMusic}></List>
       </div>
     )
@@ -48,7 +49,7 @@ class App extends React.Component {
   }
 
   onPlayerMusic = (music) => {
-    console.log(music)
+    this.setState({ playingMusic: music })
   }
 }
 
