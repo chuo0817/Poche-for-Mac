@@ -5,32 +5,3 @@
 
 }
 
-.App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white;
-}
-.App-header ul {
-  list-style: none;
-  li {
-    font-size: 24px;
-  }
-}
-.item {
-  background-size: cover;
-  width: 100%;
-  height: 300px;
-  line-height: 300px;
-  position: relative;
-  // filter:Alpha(Opacity=60);
-  // opacity:0.6;
-}
-.inner {
-  background: rgba(0,0,0,0.3);
-}
-.itemText {
-  color: #fff;
-  top: 0;
-  bottom: 0;
-  z-index: 999;
-}

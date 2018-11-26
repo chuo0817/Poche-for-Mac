@@ -45,7 +45,7 @@ class List extends React.Component {
           ))}
           </div>
         </div>
-          <div className="albumList">
+          <div className="albumlist">
             <div className="list">
             {this.state.albums.map((album, index) => (
               <div className={`item ${index === this.state.index ? 'active' : ''}`}  
