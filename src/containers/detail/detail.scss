@@ -56,9 +56,9 @@ body {
       .process-line {
         width: 70%;
         overflow: hidden;
-      width: 80px;
-      -webkit-appearance: none;
-      background-color: #9a905d;
+        width: 280px;
+        -webkit-appearance: none;
+        background-color: #9a905d;
       }
       .process-line:focus {
         outline: none;
@@ -128,7 +128,7 @@ body {
       }
       .process-line:focus::-ms-fill-lower {
         // background: linear-gradient(to right, #E099EC 0%, #E099EC 80%,#eee 80%, #eee);
-background: red;
+      background: red;
       }
       .player-time {
         color: #9c9c9c;
@@ -209,4 +209,25 @@ background: red;
   border-radius: 40px;
   color: #fff;
 }
-
+.album-list {
+  position: fixed;
+  bottom: 0;
+  height: 226px;
+  .album-container {
+    display: flex;
+    width: 580px;
+    overflow: scroll;
+    background: #fff;
+    box-shadow: 0px 0px 5px rgba(54,54,54,0.3);
+    padding: 20px;
+  }
+  .album {
+    height: 180px;
+    width: 250px;
+    margin: auto 20px;
+    .album-title {
+      width: 250px;
+      line-height: 180px;
+    }
+  }
+}

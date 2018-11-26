@@ -16,6 +16,7 @@ class Detail extends React.Component {
       repeat: false,
       totalTime: 0,
       activeTime: 0,
+      album: [],
     }
   }
   // this.props.params.query
@@ -38,6 +39,23 @@ class Detail extends React.Component {
           }
         })
         this.setState({ items })
+      })
+      axios
+      .get('/playlists/', {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => {
+        const album = res.data.map(i => {
+          return {
+            title: i.title,
+            cover: i.cover,
+            id: i.id,
+          }
+        })
+        this.setState({ album })
       })
   }
   ref = player => {
@@ -116,6 +134,18 @@ class Detail extends React.Component {
     this.props.history.push('/');
   }
 
+  renderAlbumCell(i) {
+    return (
+      <div className="album" style={{backgroundImage: `url(${i.cover})`}} key={i.id}>
+        {/* <Link to={{pathname: `/detail/${i.id}`}}> */}
+          <div className="album-alpa">
+            <div className="album-title">{i.title}</div>
+          </div>
+        {/* </Link> */}
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -190,6 +220,16 @@ class Detail extends React.Component {
         </div>
         <div className="playlist-button">
           2018年4月
+        </div>
+        <div className="album-list">
+            <div className="album-container">
+                {this.state.album.map(i => (
+                this.renderAlbumCell(i)
+              ))}
+            </div>
+            <div>
+              破车推荐   <img src="" alt=""/>
+            </div>
         </div>
       </div>
     )
