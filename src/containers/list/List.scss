@@ -1,10 +1,10 @@
-.ListContainer {
+.list-container {
   width: 600px;
   height: 100%;
   background-color: #282828;
   display: flex;
 
-  .List {
+  .list {
     // display: flex;
     justify-content: center;
     align-items: center;
@@ -12,12 +12,12 @@
     overflow: scroll;
   }
 
-  .MusicList {
+  .music-list {
     width: 350px;
     height: 100%;
     margin-left: 25px;
 
-    .Header {
+    .header {
       height: 25px;
       margin-top: 28px;
 
@@ -28,33 +28,33 @@
       }
     }
 
-    .List {
+    .list {
       height: 540px;
     }
 
-    .Item {
+    .item {
       height: 85px;
       width: 100%;
-      .Content {
+      .content {
         padding: 15px;
         display: flex;
       }
 
-      .Cover img {
+      .cover img {
         border-radius: 10px;
         width: 54px;
         height: 54px;
       }
 
-      .Info {
+      .info {
         margin-left: 14px;
-        .Title {
+        .title {
           padding-top: 4px;
           color: white;
           font-size: 16px;
           font-weight: bold;
         }
-        .Artist {
+        .artist {
           padding-top: 2px;
           color: rgba(216, 216, 216, 0.5);
           font-size: 12px;
@@ -64,7 +64,7 @@
     }
   }
 
-  .AlbumList {
+  .albumlist {
     margin-right: 20px;
     margin-top: 20px;
     float: right;
@@ -72,19 +72,18 @@
     height: 560px;
     overflow: scroll;
 
-    .Item {
+    .item {
       margin-bottom: 18px;
       width: 160px;
       height: 160px;
       overflow: hidden;
-      background-size: contain;
       border-radius: 8px;
       background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      .Title {
+      .title {
         align-content: center;
         margin: auto;
         width: 60%;
