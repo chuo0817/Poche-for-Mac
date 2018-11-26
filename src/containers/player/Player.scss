@@ -1,15 +1,14 @@
-.Player {
+.player {
   width: 600px;
   height: 100%;
   // background-color: #282828;
-  
   // background: -webkit-linear-gradient(left top,#282828 , white); /* Safari 5.1 - 6.0 */
   // background: -o-linear-gradient(bottom right, #282828, blue); /* Opera 11.1 - 12.0 */
   // background: -moz-linear-gradient(bottom right, #282828, blue); /* Firefox 3.6 - 15 */
   background: linear-gradient(to bottom right, rgba(40, 40, 40, 1), rgba(40, 40, 40, 1), rgba(40, 40, 40, 0.8), rgba(40, 40, 40, 0.4)); /* 标准的语法 */
 
-  .Header {
-    .Title {
+  .header {
+    .title {
       color: white;
       margin-left: 35px;
       margin-top: 30px;
@@ -19,7 +18,7 @@
     }
   }
 
-  .Cover {
+  .cover {
     width: 340px;
     height: 340px;
     margin-left: 130px;
@@ -28,7 +27,7 @@
     background-size: cover;
     border-radius: 5px;
 
-    .Control {
+    .control {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,16 +55,16 @@
     }
   }
 
-  .PlayerInfo {
+  .player-info {
     text-align: center;
     font-weight: bold;
-    .Title {
+    .title {
       color: white;
       font-size: 22px;
       margin-top: 18px;
     }
 
-    .Artist {
+    .artist {
       color: rgba($color: #ffffff, $alpha: 0.5);
       font-size: 18px;
       margin-top: 8px;

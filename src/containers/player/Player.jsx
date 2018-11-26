@@ -17,7 +17,7 @@ class Player extends React.Component {
   render() {
     console.log(this.props.music)
     return (
-      <div className="Player">
+      <div className="player">
         <ReactPlayer
           width="0"
           height="0"
@@ -30,14 +30,14 @@ class Player extends React.Component {
           volume={this.state.volume}
           loop={this.state.repeat}
         />
-        <div className="Header">
-          <div className="Title">
+        <div className="header">
+          <div className="title">
             <span>破车推荐</span>
           </div>
         </div>
 
-        <div className="Cover" style={{backgroundImage: `url(${this.props.music.cover})`}}>
-          <div className="Control">
+        <div className="cover" style={{backgroundImage: `url(${this.props.music.cover})`}}>
+          <div className="control">
             <div className="playing-wrap" onClick={this.playPreviousMusic}>
               < img src="images/former-icon.png" alt="-" />
             </div>
@@ -50,9 +50,9 @@ class Player extends React.Component {
           </div>
         </div>
 
-        <div className="PlayerInfo">
-          <div className="Title">{this.props.music.title}</div>
-          <div className="Artist">{this.props.music.artist}</div>
+        <div className="player-info">
+          <div className="title">{this.props.music.title}</div>
+          <div className="artist">{this.props.music.artist}</div>
         </div>
       </div>
     )
