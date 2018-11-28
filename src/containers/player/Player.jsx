@@ -2,20 +2,33 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import './Player.css'
 import ReactPlayer from 'react-player'
+const path = require('path')
+const getColors = require('get-image-colors')
 
 class Player extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      player: {
-        playing: true,
-      },
       items: [],
+      playing: true,
+      index: 0,
+      played: 0,
+      volume: 0.5,
+      repeat: false,
+      totalTime: 0,
+      activeTime: 0,
+      album: [],
     }
   }
 
+  componentWillReceiveProps() {
+    setTimeout(() => {
+      this.setState({ index: this.props.currentIndex })
+    }, 100);
+  }
+
+
   render() {
-    console.log(this.props.music)
     return (
       <div className="player">
         <ReactPlayer
@@ -24,8 +37,8 @@ class Player extends React.Component {
           onProgress={this.onProgress}
           onDuration={this.onDuration}
           ref={this.ref}
-          url={this.props.music.url}
-          playing={this.state.player.playing}
+          url={Object(this.props.music).url}
+          playing={this.state.playing}
           onEnded={this.onEnded}
           volume={this.state.volume}
           loop={this.state.repeat}
@@ -36,7 +49,7 @@ class Player extends React.Component {
           </div>
         </div>
 
-        <div className="cover" style={{backgroundImage: `url(${this.props.music.cover})`}}>
+        <div className="cover" style={{ backgroundImage: `url(${Object(this.props.music).cover})` }}>
           <div className="control">
             <div className="playing-wrap" onClick={this.playPreviousMusic}>
               < img src="images/former-icon.png" alt="-" />
@@ -51,27 +64,62 @@ class Player extends React.Component {
         </div>
 
         <div className="player-info">
-          <div className="title">{this.props.music.title}</div>
-          <div className="artist">{this.props.music.artist}</div>
+          <div className="title">{Object(this.props.music).title}</div>
+          <div className="artist">{Object(this.props.music).artist}</div>
         </div>
       </div>
     )
   }
 
   onProgress = e => {
-    // We only want to update time slider if we are not currently seeking
-    // if (!this.state.seeking) {
-    //   this.setState(e)
-    // }
-    // this.setState({ activeTime: this.secondToDate(e.playedSeconds) })
+    this.setState({ activeTime: this.secondToDate(e.playedSeconds) })
   }
 
   onDuration = d => {
-    // this.setState({ totalTime: this.secondToDate(d) })
+    this.setState({ totalTime: this.secondToDate(d) })
   }
 
-  onEnd = () => {
+  secondToDate = (result) => {
+    // var h = Math.floor(result / 3600) || 00;
+    if (result > 0) {
 
+      let m = Math.floor((result / 60 % 60));
+      if (m < 10) {
+        m = '0' + m
+      }
+      let s = Math.floor((result % 60));
+      if (s < 10) {
+        s = '0' + s
+      }
+      return result = + m + ':' + s
+    }
   }
+
+  onEnded = () => {
+    if (!this.state.repeat) {
+      this.props.playNextMusic('repeat')
+    }else {
+      this.props.playNextMusic()
+    }
+  }
+
+  // getColors(path.join(__dirname, Object(this.props.music[this.state.index]).cover).then(colors => {
+  //   // `colors` is an array of color objects
+  //   console.log(colors)
+  // })
+
+  ref = player => {
+    this.player = player
+  }
+  playOrPauseMusic = () => {
+    this.setState({ playing: !this.state.playing })
+  }
+  playPreviousMusic = () => {
+    this.props.playPreviousMusic()
+  }
+  playNextMusic = () => {
+    this.props.playNextMusic()
+  }
+
 }
 export default Player

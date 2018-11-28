@@ -1,27 +1,15 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
 import './List.css'
-import { fetchMusics, fetchMusicLists} from '../../util/request'
 
 class List extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			albums: [],
-      musics: []
+      items: []
 		}
 	}
-
-  componentDidMount() {
-    fetchMusicLists(list => {
-      this.setState({ albums: list })
-      const firstAlbumId = list[0].id;
-      fetchMusics(firstAlbumId, musics => {
-        this.setState({ musics: musics })
-        this.props.onSelectedMusic(musics[0])
-      })
-    })
-  }
 
 	render() {
 		return (
@@ -31,11 +19,11 @@ class List extends React.Component {
             <span>破车推荐2018年4月号</span>
           </div>
           <div className="list">
-          {this.state.musics.map((music, index) => (
+          {this.props.musiclist.map((music, index) => (
             <div className={`item ${index === this.state.index ? 'active' : ''}`} 
-            key={music.id} onClick={this.handleSelectedMusic.bind(this, music)}>
+            key={music.id} onDoubleClick={this.handleSelectedMusic.bind(this, music, index)}>
               <div className="content">
-              <span className="cover"><img src={music.cover}/></span>
+              <span className="cover"><img src={music.cover} alt=""/></span>
               <div className="info">
                 <div className="title">{music.title}</div>
                 <div className="artist">{music.artist}</div>
@@ -47,7 +35,7 @@ class List extends React.Component {
         </div>
           <div className="albumlist">
             <div className="list">
-            {this.state.albums.map((album, index) => (
+            {this.props.albumlist.map((album, index) => (
               <div className={`item ${index === this.state.index ? 'active' : ''}`}  
               style={{backgroundImage: `url(${album.cover})`}} key={album.id}  
               onClick={this.handlePreviewAlbum.bind(this, album.id)}>
@@ -64,14 +52,14 @@ class List extends React.Component {
     
   }
 
-  handleSelectedMusic = music => {
-    this.props.onSelectedMusic(music)
+  handleSelectedMusic = (music, index) => {
+    this.props.indexfn(index)
   }
   
   handlePreviewAlbum = (id) => {
-    fetchMusics(id, musics => {
-      this.setState({ musics: musics })
-    })
+    // fetchMusics(id, musics => {
+    //   this.setState({ musics: musics })
+    // })
     
   }
 }

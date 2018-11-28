@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function fetchMusicLists(cb) {
+export function fetchAlbumList(cb) {
   axios
       .get('/playlists/', {
         headers: {
@@ -14,7 +14,7 @@ export function fetchMusicLists(cb) {
       })
 }
 
-export function fetchMusics(id, cb) {
+export function fetchMusic(id, cb) {
   const url = '/playlists/' + id
   axios
       .get(url, {
@@ -36,8 +36,4 @@ export function fetchMusics(id, cb) {
         cb(items)
       })
 }
-
-// export default {
-//   fetchMusicLists: fetchMusicLists
-// }
 
