@@ -9,7 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      playingMusic: {}
+      playingMusic: {},
+      listEvent: ''
     }
   }
 
@@ -19,8 +20,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Player music={this.state.playingMusic} playNextMusic={this.onPlayNextMusic} playPreviousMusic={this.onPlayPreviousMusic}></Player>
-        <List onChangeMusic={this.onChangeMusic}></List>
+        <Player music={this.state.playingMusic} onNextMusic={this.onPlayNextMusic} onPreviousMusic={this.onPlayPreviousMusic}></Player>
+        <List onChangeMusic={this.onChangeMusic} execEvent={this.state.listEvent}></List>
       </div >
     )
   }
@@ -33,10 +34,10 @@ class App extends React.Component {
     this.setState({ playingMusic: music })
   }
   onPlayPreviousMusic = () => {
-    this.setState({ index: --this.state.index })
+    this.setState({ listEvent: 'previous' })
   }
   onPlayNextMusic = (repeat) => {
-    this.setState({ index: ++this.state.index })
+    this.setState({ listEvent: 'next' })
   }
   getChildIndex = (index) => {
     this.setState({ index: index })

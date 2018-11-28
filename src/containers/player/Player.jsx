@@ -2,31 +2,27 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import './Player.css'
 import ReactPlayer from 'react-player'
-const path = require('path')
-const getColors = require('get-image-colors')
+// const path = require('path')
+// const getColors = require('get-image-colors')
 
 class Player extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: [],
       playing: true,
-      index: 0,
       played: 0,
       volume: 0.5,
       repeat: false,
       totalTime: 0,
       activeTime: 0,
-      album: [],
     }
   }
 
   componentWillReceiveProps() {
-    setTimeout(() => {
-      this.setState({ index: this.props.currentIndex })
-    }, 100);
+    if (this.props.music && this.state.playing === false) {
+      this.setState({ playing: true })
+    }
   }
-
 
   render() {
     return (
@@ -51,13 +47,13 @@ class Player extends React.Component {
 
         <div className="cover" style={{ backgroundImage: `url(${Object(this.props.music).cover})` }}>
           <div className="control">
-            <div className="playing-wrap" onClick={this.playPreviousMusic}>
+            <div className="playing-wrap" onClick={this.handlePreviousMusic}>
               < img src="images/former-icon.png" alt="-" />
             </div>
             <div className="playing-wrap playing-wrap-second" onClick={this.playOrPauseMusic}>
               < img src={this.state.playing ? 'images/pause-icon.png' : 'images/play-icon.png'} alt="-" />
             </div>
-            <div className="playing-wrap" onClick={this.playNextMusic}>
+            <div className="playing-wrap" onClick={this.handleNextMusic}>
               < img src="images/next-icon.png" alt="-" />
             </div>
           </div>
@@ -98,7 +94,7 @@ class Player extends React.Component {
   onEnded = () => {
     if (!this.state.repeat) {
       this.props.playNextMusic('repeat')
-    }else {
+    } else {
       this.props.playNextMusic()
     }
   }
@@ -114,11 +110,11 @@ class Player extends React.Component {
   playOrPauseMusic = () => {
     this.setState({ playing: !this.state.playing })
   }
-  playPreviousMusic = () => {
-    this.props.playPreviousMusic()
+  handlePreviousMusic = () => {
+    this.props.onPreviousMusic()
   }
-  playNextMusic = () => {
-    this.props.playNextMusic()
+  handleNextMusic = () => {
+    this.props.onNextMusic()
   }
 
 }
