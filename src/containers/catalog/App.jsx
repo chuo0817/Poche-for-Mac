@@ -6,7 +6,6 @@ import Player from '../player/Player.jsx'
 import List from '../list/List.jsx'
 import { fetchMusic, fetchAlbumList } from '../../util/request'
 
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -37,7 +36,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Player music={this.state.musicList[this.state.index]} playNextMusic={this.onPlayNextMusic} playPreviousMusic={this.onPlayPreviousMusic}></Player>
-        <List albumlist={this.state.albumList} musiclist={this.state.musicList} indexfn={this.   getChildIndex}></List>
+        <List albumlist={this.state.albumList} musiclist={this.state.musicList} indexfn={this.getChildIndex}></List>
       </div>
     )
   }
