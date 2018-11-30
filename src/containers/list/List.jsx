@@ -30,30 +30,24 @@ class List extends React.Component {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (propsEventLoop) {
-      propsEventLoop = false
-      return
-    }
-    if (nextProps.execEvent === 'next') {
-      propsEventLoop = true
-      let index = ++this.state.currentMusicIndex
+  getNextMusic() {
+    let index = ++this.state.currentMusicIndex
       if (index >= this.state.playingMusicList.length) {
         index = 0
       }      
       const music = this.state.playingMusicList[index]
       this.setState({ currentMusicIndex: index })
-      this.props.onChangeMusic(music)
-    } else if (nextProps.execEvent === 'previous') {
-      propsEventLoop = true
-      let index = --this.state.currentMusicIndex
-      const music = this.state.playingMusicList[index]
-      if (index === 0) {
-        index = this.state.playingMusicList.length - 1
-      }
-      this.setState({ currentMusicIndex: index })
-      this.props.onChangeMusic(music)
+      return music
+  }
+
+  getPreviousMusic() {
+    let index = --this.state.currentMusicIndex
+    if (index <= 0) {
+      index = this.state.playingMusicList.length - 1
     }
+    const music = this.state.playingMusicList[index]
+    this.setState({ currentMusicIndex: index })
+    return music
   }
 
   render() {
@@ -95,10 +89,12 @@ class List extends React.Component {
 
   handleSelectedMusic = (music, index) => {
     if (this.state.previewAlbum.id === this.state.playingAlbum.id) {
+      // console.log('handleSelectedMusic same album', this.state, index);
       const music = this.state.playingMusicList[index]
       this.props.onChangeMusic(music)
       this.setState({ currentMusicIndex: index })
     } else {
+      // console.log('handleSelectedMusic diff album', this.state, index);
       const music = this.state.previewMusicList[index]
       this.setState({
         playingAlbum: this.state.previewAlbum,
@@ -110,6 +106,7 @@ class List extends React.Component {
   }
 
   handlePreviewAlbum = (index) => {
+    console.log('handlePreviewAlbum')
     const selectedAlbum = this.state.albumList[index]
     fetchMusic(selectedAlbum.id, musicList => {
       this.setState({ previewMusicList: musicList, previewAlbum: selectedAlbum })
