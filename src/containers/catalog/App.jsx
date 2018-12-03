@@ -11,7 +11,6 @@ class App extends React.Component {
     super(props)
     this.state = {
       playingMusic: {},
-      listEvent: ''
     }
   }
 
@@ -23,6 +22,7 @@ class App extends React.Component {
       <div className="App">
         <Player music={this.state.playingMusic} onNextMusic={this.onPlayNextMusic} onPreviousMusic={this.onPlayPreviousMusic}></Player>
         <List ref={this.list} onChangeMusic={this.onChangeMusic} execEvent={this.state.listEvent}></List>
+
       </div >
     )
   }

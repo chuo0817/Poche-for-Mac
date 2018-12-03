@@ -78,7 +78,6 @@ class Player extends React.Component {
   secondToDate = (result) => {
     // var h = Math.floor(result / 3600) || 00;
     if (result > 0) {
-
       let m = Math.floor((result / 60 % 60));
       if (m < 10) {
         m = '0' + m

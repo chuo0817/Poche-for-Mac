@@ -32,12 +32,12 @@ class List extends React.Component {
 
   getNextMusic() {
     let index = ++this.state.currentMusicIndex
-      if (index >= this.state.playingMusicList.length) {
-        index = 0
-      }      
-      const music = this.state.playingMusicList[index]
-      this.setState({ currentMusicIndex: index })
-      return music
+    if (index >= this.state.playingMusicList.length) {
+      index = 0
+    }
+    const music = this.state.playingMusicList[index]
+    this.setState({ currentMusicIndex: index })
+    return music
   }
 
   getPreviousMusic() {
