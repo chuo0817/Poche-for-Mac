@@ -91,11 +91,7 @@ class Player extends React.Component {
   }
 
   onEnded = () => {
-    if (!this.state.repeat) {
-      this.props.playNextMusic('repeat')
-    } else {
-      this.props.playNextMusic()
-    }
+    this.props.onNextMusic()
   }
 
   // getColors(path.join(__dirname, Object(this.props.music[this.state.index]).cover).then(colors => {

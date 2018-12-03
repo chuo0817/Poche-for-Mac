@@ -3,7 +3,6 @@ import React from 'react'
 import './List.css'
 import { fetchMusic, fetchAlbumList } from '../../util/request'
 
-let propsEventLoop = false
 class List extends React.Component {
 
   constructor(props) {
@@ -31,7 +30,7 @@ class List extends React.Component {
   }
 
   getNextMusic() {
-    let index = ++this.state.currentMusicIndex
+    let index = this.state.currentMusicIndex + 1
     if (index >= this.state.playingMusicList.length) {
       index = 0
     }
@@ -41,7 +40,7 @@ class List extends React.Component {
   }
 
   getPreviousMusic() {
-    let index = --this.state.currentMusicIndex
+    let index = this.state.currentMusicIndex - 1
     if (index <= 0) {
       index = this.state.playingMusicList.length - 1
     }

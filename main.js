@@ -14,8 +14,7 @@ let mainWindow
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1200, height: 600, frame: false, icon: __dirname + '/logo.ico' })
-
+  mainWindow = new BrowserWindow({ width: 1200, height: 600, resizable: false, titleBarStyle: 'hidden', icon: __dirname + '/logo.ico' })
   // and load the index.html of the app.
   if (pkg.DEV) {
     mainWindow.loadURL('http://localhost:3000/')
