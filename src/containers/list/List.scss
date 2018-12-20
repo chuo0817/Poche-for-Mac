@@ -27,6 +27,12 @@
 
     .list {
       height: 540px;
+      width: 330px;
+    }
+
+    .active {
+      background: rgba(148,140,140,0.15);
+      border-radius: 5px;
     }
 
     .item {

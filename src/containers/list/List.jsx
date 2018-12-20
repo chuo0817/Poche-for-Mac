@@ -76,6 +76,7 @@ class List extends React.Component {
   }
 
   render() {
+    const { currentMusicIndex, playingAlbum, previewAlbum } = this.state
     return (
       <div className="list-container">
         <div className="music-list">
@@ -84,7 +85,7 @@ class List extends React.Component {
           </div>
           <div className="list">
             {this.state.previewMusicList.map((music, index) => (
-              <div className={`item ${index === this.state.index ? 'active' : ''}`}
+              <div className={`item ${index === currentMusicIndex && playingAlbum.id === previewAlbum.id ? 'active' : ''}`}
                 key={music.id} onDoubleClick={this.handleSelectedMusic.bind(this, music, index)}>
                 <div className="content">
                   <span className="cover"><img src={music.cover} alt="" /></span>
@@ -100,7 +101,7 @@ class List extends React.Component {
         <div className="albumlist">
           <div className="list">
             {this.state.albumList.map((album, index) => (
-              <div className={`item ${index === this.state.index ? 'active' : ''}`}
+              <div className={`item index === index ? 'active' : ''}`}
                 style={{ backgroundImage: `url(${album.cover})` }} key={album.id}
                 onClick={this.handlePreviewAlbum.bind(this, index)}>
                 <span className="title">{album.title}</span>

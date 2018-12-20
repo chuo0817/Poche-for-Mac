@@ -66,6 +66,7 @@ class Player extends React.Component {
   }
 
   render() {
+    const { playing, volume, repeat } = this.state
     return (
       <div className="player">
         <ReactPlayer
@@ -75,10 +76,10 @@ class Player extends React.Component {
           onDuration={this.onDuration}
           ref={this.ref}
           url={Object(this.props.music).url}
-          playing={this.state.playing}
+          playing={playing}
           onEnded={this.onEnded}
-          volume={this.state.volume}
-          loop={this.state.repeat}
+          volume={volume}
+          loop={repeat}
         />
         <div className="header">
           <div className="title">
@@ -92,7 +93,7 @@ class Player extends React.Component {
               < img src="images/former-icon.png" alt="-" />
             </div>
             <div className="playing-wrap playing-wrap-second" onClick={this.playOrPauseMusic}>
-              < img src={this.state.playing ? 'images/pause-icon.png' : 'images/play-icon.png'} alt="-" />
+              < img src={playing ? 'images/pause-icon.png' : 'images/play-icon.png'} alt="-" />
             </div>
             <div className="playing-wrap" onClick={this.handleNextMusic}>
               < img src="images/next-icon.png" alt="-" />
