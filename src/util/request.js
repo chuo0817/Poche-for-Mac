@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const $http = axios.create({
-  baseURL: 'http://localhost:3000/api/app'
+  baseURL: 'https://poche.fm/api/app'
 })
 
 export function fetchAlbumList(cb) {
