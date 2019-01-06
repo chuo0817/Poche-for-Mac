@@ -5,7 +5,7 @@
   "main": "main.js",
   "license": "Mozilla",
   "homepage": ".",
-  "DEV": true,
+  "DEV": false,
   "dependencies": {
     "axios": "^0.18.0",
     "electron": "^2.0.0",
@@ -30,7 +30,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron-start": "electron . port=7777",
-    "package": "electron-packager . popo --platform=mas --arch=all --icon=./build/favicon.icns --electron-version=0.37.3 --out=./dist/ --overwrite=true --ignore=node_modules/electron-* --ignore=node_modules/.bin --ignore=.git --ignore=dist --prune=true"
+    "package": "electron-packager ./build/ popo --platform=darwin --arch=all --icon=./build/favicon.icns --electron-version=0.37.3 --out=./dist/ --overwrite=true --ignore=node_modules/electron-* --ignore=node_modules/.bin --ignore=.git --ignore=dist --prune=true"
   },
   "proxy": "https://poche.fm/api/app",
   "devDependencies": {
