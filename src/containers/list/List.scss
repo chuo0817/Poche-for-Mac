@@ -16,7 +16,7 @@
 
     .header {
       height: 25px;
-      margin-top: 28px;
+      margin-top: 18px;
 
       span {
         font-size: 18px;
@@ -26,8 +26,9 @@
     }
 
     .list {
-      height: 540px;
+      height: 520px;
       width: 330px;
+      margin-top: 16px;
     }
 
     .active {
@@ -72,7 +73,6 @@
     margin-right: 20px;
     margin-top: 20px;
     float: right;
-    width: 200px;
     height: 560px;
     overflow: scroll;
 
@@ -86,10 +86,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      opacity:0.6;
+      // box-shadow: 0 0 0 50vmax rgba(0,0,0,.08);
 
       .title {
-        align-content: center;
-        margin: auto;
+        opacity:1;
         width: 60%;
         color: white;
         text-align: center;
